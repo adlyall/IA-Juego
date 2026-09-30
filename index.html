@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PIEDRA, PAPEL O TIJERA</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="contenedor">
+        <header class="header">
+            <h1 class="titulo">PIEDRA, PAPEL O TIJERA</h1>
+            <p class="subtitulo">Desafía a la computadora</p>
+            <div class="emojis-header">✊ ✋ ✌️</div>
+        </header>
+
+        <main class="main">
+            <section class="tarjeta reglas">
+                <h2>📋 Reglas del juego</h2>
+                <ul class="lista-reglas">
+                    <li><strong>Piedra ✊</strong> gana a <strong>Tijera ✌️</strong></li>
+                    <li><strong>Tijera ✌️</strong> gana a <strong>Papel ✋</strong></li>
+                    <li><strong>Papel ✋</strong> gana a <strong>Piedra ✊</strong></li>
+                    <li>Mismas jugadas = <strong>Empate</strong></li>
+                    <li>Partida al <strong>mejor de 3</strong> (primero en 2 victorias)</li>
+                    <li>Los empates se cuentan pero no terminan la partida</li>
+                </ul>
+            </section>
+
+            <section class="tarjeta inicio-juego">
+                <h2>🎮 ¡Comenzá el desafío!</h2>
+                <p class="descripcion">Abrí la consola del navegador (F12) para ver el registro detallado de cada ronda.</p>
+                <button id="btn-iniciar" class="btn-iniciar" onclick="iniciarJuego()">
+                    INICIAR PARTIDA
+                </button>
+            </section>
+
+            <section class="tarjeta conceptos">
+                <h2>🧠 Conceptos utilizados</h2>
+                <div class="grid-conceptos">
+                    <div class="concepto"><span class="icono">📦</span> Variables</div>
+                    <div class="concepto"><span class="icono">🔒</span> Constantes</div>
+                    <div class="concepto"><span class="icono">🔤</span> Strings y números</div>
+                    <div class="concepto"><span class="icono">⚙️</span> Operadores</div>
+                    <div class="concepto"><span class="icono">🔀</span> Condicionales</div>
+                    <div class="concepto"><span class="icono">🔁</span> Ciclos (while / do...while)</div>
+                    <div class="concepto"><span class="icono">📦</span> Arrays</div>
+                    <div class="concepto"><span class="icono">📊</span> Objetos</div>
+                    <div class="concepto"><span class="icono">➕</span> Acumuladores</div>
+                    <div class="concepto"><span class="icono">✅</span> Validaciones</div>
+                    <div class="concepto"><span class="icono">🎲</span> Math.random()</div>
+                    <div class="concepto"><span class="icono">❓</span> prompt()</div>
+                    <div class="concepto"><span class="icono">💬</span> alert()</div>
+                    <div class="concepto"><span class="icono">🖥️</span> console.log()</div>
+                    <div class="concepto"><span class="icono">🔧</span> Funciones</div>
+                    <div class="concepto"><span class="icono">📥</span> Parámetros</div>
+                    <div class="concepto"><span class="icono">📤</span> return</div>
+                </div>
+            </section>
+        </main>
+
+        <footer class="footer">
+            <p>DAWI — Desarrollo de Aplicaciones Web Inteligentes</p>
+        </footer>
+    </div>
+    <script src="clase10.js"></script>
+</body>
+</html>
