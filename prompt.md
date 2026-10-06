@@ -57,7 +57,15 @@ Puedes utilizar:
 - `Math.random()`;
 - `prompt()`;
 - `alert()`;
-- `console.log()`.
+- `console.log()`;
+- document;
+- querySelector;
+- querySelectorAll;
+- getElementById;
+- innerHTML;
+- textContent;
+- addEventListener;
+- onclick.
 
 No utilices conceptos que todavía no hemos trabajado.
 
@@ -66,19 +74,11 @@ No utilices conceptos que todavía no hemos trabajado.
 No utilices:
 
 ```js
-document
-querySelector
-querySelectorAll
-getElementById
-innerHTML
-textContent
-addEventListener
-onclick
+
 ```
 
 Tampoco utilices:
 
-- DOM;
 - eventos;
 - clases;
 - módulos;
@@ -579,7 +579,7 @@ Utiliza una estética moderna relacionada con:
 
 Puedes utilizar:
 
-- fondo oscuro;
+- fondo claro;
 - degradados;
 - tarjetas;
 - bordes redondeados;
@@ -636,7 +636,7 @@ Debe explicar brevemente:
 
 ## Piedra, Papel o Tijera
 
-Proyecto realizado como actividad introductoria de JavaScript para DAWI.
+Proyecto realizado como actividad introductoria de JavaScript para DAWI con DOM.
 
 ## Conceptos utilizados
 
@@ -775,11 +775,7 @@ Los empates deben acumularse, pero la partida debe continuar.
 Revisa especialmente que no hayas utilizado:
 
 ```js
-document
-querySelector
-getElementById
-addEventListener
-onclick
+
 ```
 
 ni ningún otro mecanismo de manipulación del DOM.
@@ -816,6 +812,6 @@ en un navegador y comenzar a jugar.
 
 ## Restricción final
 
-**No utilices DOM ni conceptos de JavaScript que estén fuera del nivel indicado, aunque exista una forma más moderna, corta o eficiente de resolverlo.**
+**No utilices conceptos de JavaScript que estén fuera del nivel indicado, aunque exista una forma más moderna, corta o eficiente de resolverlo.**
 
 En este proyecto es más importante que el código permita comprender y reconocer los contenidos trabajados en clase que utilizar soluciones avanzadas.
