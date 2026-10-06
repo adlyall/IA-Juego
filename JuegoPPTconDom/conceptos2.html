@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptos 2 - Objetos, Ciclos, Math.random()</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dom-body">
+    <div class="container dom-container">
+        <header class="header dom-header">
+            <h1 class="title">🎯 CONCEPTOS 2</h1>
+            <p class="subtitle">Objetos · Ciclos · Math.random()</p>
+            <div class="emojis">🎯 🔄 🎲</div>
+        </header>
+
+        <main class="main dom-main">
+
+            <!-- ===== OBJETOS ===== -->
+            <section class="rules-card dom-section">
+                <h2>🎯 1. Objetos: <code>puntajes</code></h2>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">Un objeto es una <strong>colección de propiedades</strong> con nombre. Permite agrupar datos relacionados en una sola variable.</p>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">En <code>clase10.js</code> (líneas 4-9):</h3>
+                <pre class="code-block"><code>// OBJETO: almacena los puntajes de la partida
+let puntajes = {
+    usuario: 0,
+    computadora: 0,
+    empates: 0
+};</code></pre>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">Acceder y modificar propiedades:</h3>
+                <pre class="code-block"><code>// Leer una propiedad
+puntajes.usuario        // 0 (valor inicial)
+puntajes.computadora    // 0
+puntajes.empates        // 0
+
+// Modificar una propiedad (acumulador)
+puntajes.usuario++;      // suma 1 a usuario
+puntajes.computadora++;  // suma 1 a computadora
+puntajes.empates++;      // suma 1 a empates</code></pre>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">En <code>clase10.js</code> — Actualización (líneas 111-119):</h3>
+                <pre class="code-block"><code>function actualizarPuntajes(resultado) {
+    if (resultado === "usuario") {
+        puntajes.usuario++;       // acumulador
+    } else if (resultado === "computadora") {
+        puntajes.computadora++;   // acumulador
+    } else {
+        puntajes.empates++;       // acumulador
+    }
+}</code></pre>
+
+                <div class="dom-explanation">
+                    <strong>💡 Sintaxis de objeto:</strong>
+                    <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                        <li><code>objeto.propiedad</code> → punto para acceder</li>
+                        <li><code>objeto["propiedad"]</code> → corchetes (alternativa)</li>
+                        <li>Las propiedades se separan con <strong>comas</strong></li>
+                        <li>Última propiedad puede tener coma final (trailing comma)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- ===== CICLOS ===== -->
+            <section class="rules-card dom-section">
+                <h2>🔄 2. Ciclos: <code>while</code> y <code>do...while</code></h2>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">Los ciclos <strong>repiten código</strong> mientras una condición sea verdadera.</p>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">En <code>clase10.js</code> — Ciclo <code>while</code> para validar nombre (líneas 22-42):</h3>
+                <pre class="code-block"><code>// CICLO: repite hasta que el nombre sea válido
+while (!nombreValido) {
+    let nombre = prompt("Ingresá tu nombre:");
+
+    if (nombre === null) {
+        alert("El nombre es obligatorio.");
+        continue;  // salta a la siguiente iteración
+    }
+
+    nombre = nombre.trim();
+
+    if (nombre.length < 3) {
+        alert("Mínimo 3 caracteres.");
+        continue;
+    }
+
+    nombreValido = true;  // condición para salir del ciclo
+}</code></pre>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">En <code>clase10.js</code> — Ciclo <code>while</code> para la partida (líneas 214-217):</h3>
+                <pre class="code-block"><code>// CICLO: mantiene la partida activa hasta que alguien gane
+while (puntajes.usuario < 2 && puntajes.computadora < 2) {
+    jugarRonda();
+}
+// Se repite hasta que usuario O computadora lleguen a 2 victorias</code></pre>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">En <code>clase10.js</code> — Ciclo <code>while</code> para validar jugada (líneas 65-85):</h3>
+                <pre class="code-block"><code>// CICLO: repite hasta que la jugada sea válida
+while (!entradaValida) {
+    let entrada = prompt("Elegí: 1-Piedra, 2-Papel, 3-Tijera");
+
+    if (entrada === null) {
+        alert("Debés elegir una opción.");
+        continue;
+    }
+
+    eleccion = Number(entrada);
+
+    if (isNaN(eleccion) || eleccion < 1 || eleccion > 3) {
+        alert("Opción inválida.");
+        continue;
+    }
+
+    entradaValida = true;  // sale del ciclo
+}</code></pre>
+
+                <div class="dom-explanation">
+                    <strong>💡 while vs do...while:</strong>
+                    <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                        <li><code>while (condición)</code> → evalúa <strong>antes</strong>, puede no ejecutarse nunca</li>
+                        <li><code>do { } while (condición)</code> → ejecuta <strong>al menos una vez</strong>, evalúa después</li>
+                        <li>En este proyecto usamos <code>while</code> porque la condición se puede verificar antes de pedir datos</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- ===== MATH.RANDOM ===== -->
+            <section class="rules-card dom-section">
+                <h2>🎲 3. <code>Math.random()</code></h2>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">Genera un número <strong>aleatorio decimal entre 0 (inclusive) y 1 (exclusivo)</strong>. Se usa para que la computadora elija su jugada de forma impredecible.</p>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">En <code>clase10.js</code> (líneas 50-58):</h3>
+                <pre class="code-block"><code>// FUNCIÓN: genera jugada aleatoria para la computadora
+function jugadaRandom() {
+    // Math.random() → número entre 0 y 0.999...
+    // * 3 → número entre 0 y 2.999...
+    // Math.floor() → redondea hacia abajo: 0, 1, 2
+    // + 1 → desplazamos el rango: 1, 2, 3
+    let numeroAleatorio = Math.floor(Math.random() * 3) + 1;
+    return numeroAleatorio;
+}</code></pre>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">Desglose paso a paso:</h3>
+                <pre class="code-block"><code>Math.random()           // 0.7234... (ejemplo)
+Math.random() * 3       // 2.1702... (ejemplo)
+Math.floor(2.1702)      // 2 (redondea hacia abajo)
+Math.floor(...) + 1     // 3 (resultado final)
+
+// Otros ejemplos:
+// 0.1234 * 3 = 0.3702 → floor = 0 → +1 = 1 (Piedra)
+// 0.5000 * 3 = 1.5000 → floor = 1 → +1 = 2 (Papel)
+// 0.9999 * 3 = 2.9997 → floor = 2 → +1 = 3 (Tijera)</code></pre>
+
+                <div class="dom-explanation">
+                    <strong>💡 Fórmula general:</strong>
+                    <p style="margin: 0.5rem 0;"><code>Math.floor(Math.random() * cantidad) + minimo</code></p>
+                    <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                        <li><code>cantidad</code> → cuántos valores posibles (3 en este juego)</li>
+                        <li><code>minimo</code> → valor más bajo deseado (1 en este juego)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="index.html" class="btn-iniciar" style="text-decoration: none; display: inline-block;">
+                    🎮 REGRESAR AL JUEGO
+                </a>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>DAWI — Desarrollo de Aplicaciones Web Inteligentes</p>
+        </footer>
+    </div>
+</body>
+</html>

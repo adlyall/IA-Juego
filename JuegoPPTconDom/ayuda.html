@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ayuda - Piedra, Papel o Tijera</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="title">CÓMO JUGAR</h1>
+            <p class="subtitle">Guía rápida de Piedra, Papel o Tijera</p>
+            <div class="emojis">✊ ✋ ✌️</div>
+        </header>
+
+        <main class="main">
+            <section class="rules-card">
+                <h2>🎯 Objetivo del Juego</h2>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">Gana la partida siendo el primero en alcanzar <strong>2 victorias</strong> (mejor de 3 rondas decisivas). Los empates se cuentan pero no suman victorias.</p>
+                
+                <h2 style="margin-top: 1.5rem; color: #667eea;">📋 Reglas Básicas</h2>
+                <ul style="margin-top: 0.5rem;">
+                    <li>✊ <strong>Piedra</strong> aplasta a ✌️ <strong>Tijera</strong></li>
+                    <li>✌️ <strong>Tijera</strong> corta a ✋ <strong>Papel</strong></li>
+                    <li>✋ <strong>Papel</strong> envuelve a ✊ <strong>Piedra</strong></li>
+                    <li>Jugadas iguales = <strong>Empate</strong></li>
+                </ul>
+            </section>
+
+            <section class="rules-card" style="animation-delay: 0.3s;">
+                <h2>🕹️ Flujo de la Partida</h2>
+                <ol style="margin-top: 0.5rem; padding-left: 1.5rem; line-height: 2;">
+                    <li><strong>Inicio:</strong> Pulsa "INICIAR PARTIDA" en la pantalla principal</li>
+                    <li><strong>Nombre:</strong> Ingresa tu nombre (mínimo 3 caracteres)</li>
+                    <li><strong>Elección:</strong> Elige 1, 2 o 3 cuando aparezca el prompt:</li>
+                    <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                        <li>1 = Piedra ✊</li>
+                        <li>2 = Papel ✋</li>
+                        <li>3 = Tijera ✌️</li>
+                    </ul>
+                    <li><strong>Computadora:</strong> Elige aleatoriamente su jugada</li>
+                    <li><strong>Resultado:</strong> Verás quién ganó la ronda</li>
+                    <li><strong>Marcador:</strong> Se actualizan los puntajes</li>
+                    <li><strong>Repetir:</strong> Continúa hasta que alguien llegue a 2 victorias</li>
+                    <li><strong>Final:</strong> Pantalla de resultado con estadísticas completas</li>
+                </ol>
+            </section>
+
+            <section class="rules-card" style="animation-delay: 0.4s;">
+                <h2>💡 Consejos</h2>
+                <ul style="margin-top: 0.5rem;">
+                    <li>La computadora juega <strong>aleatoriamente</strong> — no hay patrón</li>
+                    <li>Los <strong>empates</strong> alargan la partida pero no benefician a nadie</li>
+                    <li>Puedes ver el detalle técnico en la <strong>consola del navegador</strong> (F12)</li>
+                    <li>Si cancelas un prompt, el juego te volverá a preguntar</li>
+                </ul>
+            </section>
+
+            <section class="rules-card" style="animation-delay: 0.5s;">
+                <h2>⌨️ Controles</h2>
+                <div style="display: grid; gap: 0.8rem; margin-top: 0.5rem;">
+                    <div style="display: flex; align-items: center; gap: 1rem; padding: 0.8rem; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #667eea;">
+                        <span style="font-size: 1.5rem;">🖱️</span>
+                        <div>
+                            <strong>Click en botones</strong> — Navegar entre pantallas
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem; padding: 0.8rem; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #667eea;">
+                        <span style="font-size: 1.5rem;">⌨️</span>
+                        <div>
+                            <strong>Teclado en prompts</strong> — Escribir nombre y números 1/2/3
+                        </div>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 1rem; padding: 0.8rem; background: #f8f9fa; border-radius: 10px; border-left: 4px solid #667eea;">
+                        <span style="font-size: 1.5rem;">🔄</span>
+                        <div>
+                            <strong>Recargar página</strong> — Reiniciar partida completa
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div style="text-align: center; margin-top: 2rem; animation: fadeIn 0.6s ease-out 0.6s both;">
+                <a href="index.html" class="btn-iniciar" style="text-decoration: none; display: inline-block;">
+                    ← VOLVER AL JUEGO
+                </a>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>DAWI — Desarrollo de Aplicaciones Web Inteligentes</p>
+        </footer>
+    </div>
+</body>
+</html>

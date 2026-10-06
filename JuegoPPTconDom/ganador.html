@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Victoria - Piedra, Papel o Tijera</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="ganado-body">
+    <div class="container ganado-container">
+        <header class="header ganado-header">
+            <h1 class="title">🏆 VICTORIA 🏆</h1>
+            <p class="subtitle">¡Partida finalizada!</p>
+            <div class="emojis winner-emojis" id="winnerEmojis">✊ ✋ ✌️</div>
+        </header>
+
+        <main class="main ganado-main">
+            <section class="rules-card winner-card" id="winnerCard">
+                <h2 id="winnerTitle">¡GANADOR!</h2>
+                <div class="winner-name" id="winnerName">JUGADOR</div>
+                <div class="winner-icon" id="winnerIcon">🏆</div>
+                <p class="winner-message" id="winnerMessage">Ha derrotado a la computadora</p>
+            </section>
+
+            <section class="rules-card stats-card" id="statsCard">
+                <h2>📊 Estadísticas Finales</h2>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <span class="stat-label">Rondas jugadas</span>
+                        <span class="stat-value" id="totalRondas">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Victorias</span>
+                        <span class="stat-value" id="victoriasUsuario">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Derrotas</span>
+                        <span class="stat-value" id="victoriasComputadora">0</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-label">Empates</span>
+                        <span class="stat-value" id="empates">0</span>
+                    </div>
+                </div>
+            </section>
+
+            <div class="button-group" style="margin-top: 2rem;">
+                <a href="index.html" class="btn-iniciar btn-reintentar">🔄 VOLVER A JUGAR</a>
+                <button id="btnBorrarStats" class="btn-ayuda btn-borrar" style="margin-left: 0.5rem;">🗑️ BORRAR ESTADÍSTICAS</button>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>DAWI — Desarrollo de Aplicaciones Web Inteligentes</p>
+        </footer>
+    </div>
+    <script src="ganador.js"></script>
+</body>
+</html>

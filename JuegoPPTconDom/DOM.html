@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM en el Juego - Piedra, Papel o Tijera</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dom-body">
+    <div class="container dom-container">
+        <header class="header dom-header">
+            <h1 class="title">🌐 DOM EN EL JUEGO</h1>
+            <p class="subtitle">Document Object Model - Manipulación del HTML</p>
+            <div class="emojis">📄 🔍 ⚙️</div>
+        </header>
+
+        <main class="main dom-main">
+            <section class="rules-card intro-card">
+                <h2>📖 ¿Qué es el DOM?</h2>
+                <p style="line-height: 1.7; margin-bottom: 1rem;">El <strong>DOM (Document Object Model)</strong> es la representación en árbol del documento HTML. Permite a JavaScript <strong>leer, modificar, crear y eliminar</strong> elementos de la página web dinámicamente.</p>
+                <p style="line-height: 1.7;">En este juego utilizamos el DOM de forma <strong>mínima y educativa</strong>: solo para vincular botones a funciones y en la pantalla de victoria (ganador.html) para mostrar datos dinámicos.</p>
+            </section>
+
+            <section class="rules-card dom-section">
+                <h2>🔗 1. Seleccionar elementos: <code>getElementById</code> y <code>querySelector</code></h2>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">Antes de manipular un elemento, debemos <strong>seleccionarlo</strong>.</p>
+                
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">En <code>clase10.js</code> (línea 230):</h3>
+                <pre class="code-block"><code>// Selecciona el botón por su ID
+document.getElementById("btnIniciar")</code></pre>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">En <code>ganador.js</code> (líneas 11-22):</h3>
+                <pre class="code-block"><code>// Por ID (único)
+const winnerTitle = document.getElementById('winnerTitle');
+const winnerName = document.getElementById('winnerName');
+
+// Por selector CSS (clase, etiqueta, etc.)
+const statsCard = document.getElementById('statsCard');
+const buttonGroup = document.querySelector('.button-group');</code></pre>
+
+                <div class="dom-explanation">
+                    <strong>💡 Diferencia clave:</strong>
+                    <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                        <li><code>getElementById('id')</code> → Un solo elemento (rápido, único)</li>
+                        <li><code>querySelector('.clase')</code> → Primer match de selector CSS</li>
+                        <li><code>querySelectorAll('.clase')</code> → Todos los matches (NodeList)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="rules-card dom-section">
+                <h2>🎯 2. Eventos: <code>addEventListener</code></h2>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">Los eventos permiten <strong>reaccionar a acciones del usuario</strong> (click, teclado, carga de página, etc.).</p>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">En <code>clase10.js</code> (líneas 229-232):</h3>
+                <pre class="code-block"><code>// Evento click en el botón iniciar
+document.getElementById("btnIniciar").addEventListener("click", function() {
+    iniciarJuego();
+});</code></pre>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">En <code>ganador.js</code> (líneas 47-60 y 82-102):</h3>
+                <pre class="code-block"><code>// Evento: página cargada (DOM listo)
+document.addEventListener('DOMContentLoaded', function() {
+    statsCard.style.opacity = '0';
+    buttonGroup.style.opacity = '0';
+    
+    setTimeout(() => {
+        statsCard.style.animation = 'slideUp 0.6s ease-out';
+        statsCard.style.opacity = '1';
+    }, 200);
+});
+
+// Evento: click en botón borrar
+const btnBorrarStats = document.getElementById('btnBorrarStats');
+btnBorrarStats.addEventListener('click', function() {
+    totalRondasEl.textContent = '0';
+    // ... más código
+});</code></pre>
+
+                <div class="dom-explanation">
+                    <strong>💡 Eventos usados en el proyecto:</strong>
+                    <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                        <li><code>click</code> → Botones "INICIAR PARTIDA", "BORRAR ESTADÍSTICAS"</li>
+                        <li><code>DOMContentLoaded</code> → Animaciones de entrada en ganador.html</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="rules-card dom-section">
+                <h2>✏️ 3. Modificar contenido: <code>textContent</code> e <code>innerHTML</code></h2>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">Cambiar el texto o HTML interno de un elemento.</p>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">En <code>ganador.js</code> (líneas 24-38):</h3>
+                <pre class="code-block"><code>// textContent: solo texto (seguro, escapa HTML)
+winnerTitle.textContent = '🏆 ¡GANADOR!';
+winnerName.textContent = nombreJugador;  // Variable dinámica
+winnerMessage.textContent = 'Ha derrotado a la computadora';</code></pre>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">Actualizar estadísticas (líneas 41-45):</h3>
+                <pre class="code-block"><code>totalRondasEl.textContent = totalRondas;
+victoriasUsuarioEl.textContent = puntajeUsuario;
+victoriasComputadoraEl.textContent = puntajeComputadora;
+empatesEl.textContent = empates;</code></pre>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">Feedback visual en botón borrar (líneas 91-94):</h3>
+                <pre class="code-block"><code>this.textContent = '✅ BORRADO';  // Cambia texto del botón</code></pre>
+
+                <div class="dom-explanation">
+                    <strong>💡 textContent vs innerHTML:</strong>
+                    <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                        <li><code>textContent</code> → Solo texto, <strong>seguro contra XSS</strong>, rápido</li>
+                        <li><code>innerHTML</code> → Permite HTML, <strong>peligroso si datos vienen del usuario</strong></li>
+                        <li>En este proyecto <strong>solo usamos textContent</strong> por seguridad</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="rules-card dom-section">
+                <h2>🎨 4. Modificar estilos: <code>style</code> property</h2>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">Cambiar CSS dinámicamente desde JavaScript.</p>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">En <code>ganador.js</code> - Animaciones (líneas 48-59):</h3>
+                <pre class="code-block"><code>statsCard.style.opacity = '0';
+statsCard.style.animation = 'slideUp 0.6s ease-out';
+statsCard.style.opacity = '1';
+
+buttonGroup.style.animation = 'slideUp 0.6s ease-out';
+buttonGroup.style.opacity = '1';</code></pre>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">Borde dinámico según ganador (líneas 31 y 38):</h3>
+                <pre class="code-block"><code>// Usuario gana → borde verde
+winnerCard.style.borderLeft = '6px solid #4ade80';
+
+// Computadora gana → borde rojo
+winnerCard.style.borderLeft = '6px solid #f87171';</code></pre>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">Feedback visual botón (líneas 92-99):</h3>
+                <pre class="code-block"><code>this.style.background = 'linear-gradient(135deg, #4ade80 0%, #22c55e 100%)';
+this.style.boxShadow = '0 4px 20px rgba(74, 222, 128, 0.5)';
+
+// Restaurar después de 1.5s
+setTimeout(() => {
+    this.style.background = '';
+    this.style.boxShadow = '';
+}, 1500);</code></pre>
+
+                <div class="dom-explanation">
+                    <strong>💡 Notas importantes:</strong>
+                    <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                        <li>Propiedades CSS en JS usan <strong>camelCase</strong>: <code>borderLeft</code>, <code>boxShadow</code>, <code>backgroundColor</code></li>
+                        <li>Valores como <strong>strings</strong>: <code>'6px solid #4ade80'</code></li>
+                        <li>Asignar <code>''</code> (vacío) → vuelve al CSS original</li>
+                    </ul>
+                </div>
+            </section>
+
+            <section class="rules-card dom-section">
+                <h2>🏗️ 5. Crear elementos dinámicamente: <code>createElement</code> + <code>appendChild</code></h2>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">Crear nuevos nodos HTML e insertarlos en el árbol DOM.</p>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">En <code>ganador.js</code> - Efecto confeti (líneas 63-75):</h3>
+                <pre class="code-block"><code>function crearConfeti() {
+    const colores = ['#667eea', '#764ba2', '#4ade80', '#f87171', '#fbbf24'];
+    
+    for (let i = 0; i < 30; i++) {
+        // 1. CREAR elemento
+        const confeti = document.createElement('div');
+        
+        // 2. CONFIGURAR propiedades
+        confeti.className = 'confeti';
+        confeti.style.left = Math.random() * 100 + '%';
+        confeti.style.backgroundColor = colores[Math.floor(Math.random() * colores.length)];
+        confeti.style.animationDelay = Math.random() * 2 + 's';
+        confeti.style.animationDuration = (2 + Math.random() * 2) + 's';
+        
+        // 3. INSERTAR en el DOM
+        document.body.appendChild(confeti);
+        
+        // 4. LIMPIAR después de la animación
+        setTimeout(() => confeti.remove(), 4000);
+    }
+}</code></pre>
+
+                <div class="dom-explanation">
+                    <strong>💡 Flujo de creación dinámica:</strong>
+                    <ol style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                        <li><code>document.createElement('tag')</code> → Crea nodo en memoria</li>
+                        <li>Configurar: <code>className</code>, <code>style</code>, <code>textContent</code>, etc.</li>
+                        <li><code>padre.appendChild(hijo)</code> → Inserta en el árbol (visible)</li>
+                        <li><code>nodo.remove()</code> → Elimina del DOM (limpieza)</li>
+                    </ol>
+                </div>
+            </section>
+
+            <section class="rules-card dom-section">
+                <h2>🔄 6. Flujo completo: índice → juego → victoria</h2>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">Cómo interactúan las tres páginas via DOM y URLs.</p>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">Paso 1: index.html → clase10.js</h3>
+                <pre class="code-block"><code>// index.html línea 85
+<script src="clase10.js"></script>
+
+// clase10.js línea 230
+document.getElementById("btnIniciar").addEventListener("click", iniciarJuego);</code></pre>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">Paso 2: clase10.js → ganador.html (redirección con datos)</h3>
+                <pre class="code-block"><code>// clase10.js líneas 163-171
+let url = "ganador.html?";
+url += "ganador=" + encodeURIComponent(ganador);
+url += "&nombre=" + encodeURIComponent(nombreJugador);
+url += "&puntajeUsuario=" + encodeURIComponent(puntajes.usuario);
+url += "&puntajeComputadora=" + encodeURIComponent(puntajes.computadora);
+url += "&empates=" + encodeURIComponent(puntajes.empates);
+
+window.location.href = url;  // Navegación programática</code></pre>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">Paso 3: ganador.html → ganador.js (lectura de URL + DOM)</h3>
+                <pre class="code-block"><code>// ganador.js líneas 1-8
+const urlParams = new URLSearchParams(window.location.search);
+const ganador = urlParams.get('ganador') || 'usuario';
+const nombreJugador = urlParams.get('nombre') || 'JUGADOR';
+const puntajeUsuario = parseInt(urlParams.get('puntajeUsuario')) || 0;
+// ...
+
+// ganador.js líneas 11-22: Selección DOM
+const winnerName = document.getElementById('winnerName');
+// ...
+
+// ganador.js líneas 27: Escritura DOM
+winnerName.textContent = nombreJugador;</code></pre>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">Paso 4: ganador.html → index.html (navegación simple)</h3>
+                <pre class="code-block"><code><!-- ganador.html línea 48 -->
+<a href="index.html" class="btn-iniciar btn-reintentar">
+    🔄 VOLVER A JUGAR
+</a></code></pre>
+            </section>
+
+            <section class="rules-card summary-card">
+                <h2>📋 Resumen: DOM en este proyecto</h2>
+                <div style="display: grid; gap: 0.8rem; margin-top: 1rem;">
+                    <div class="dom-summary-item">
+                        <span class="dom-badge">✅ USADO</span>
+                        <div>
+                            <strong>getElementById / querySelector</strong> — Seleccionar botones y contenedores
+                        </div>
+                    </div>
+                    <div class="dom-summary-item">
+                        <span class="dom-badge">✅ USADO</span>
+                        <div>
+                            <strong>addEventListener('click')</strong> — Botón iniciar, botón borrar
+                        </div>
+                    </div>
+                    <div class="dom-summary-item">
+                        <span class="dom-badge">✅ USADO</span>
+                        <div>
+                            <strong>addEventListener('DOMContentLoaded')</strong> — Animaciones entrada
+                        </div>
+                    </div>
+                    <div class="dom-summary-item">
+                        <span class="dom-badge">✅ USADO</span>
+                        <div>
+                            <strong>textContent</strong> — Mostrar nombre, estadísticas, feedback
+                        </div>
+                    </div>
+                    <div class="dom-summary-item">
+                        <span class="dom-badge">✅ USADO</span>
+                        <div>
+                            <strong>style.property</strong> — Bordes, animaciones, colores dinámicos
+                        </div>
+                    </div>
+                    <div class="dom-summary-item">
+                        <span class="dom-badge">✅ USADO</span>
+                        <div>
+                            <strong>createElement / appendChild / remove</strong> — Efecto confeti
+                        </div>
+                    </div>
+                    <div class="dom-summary-item">
+                        <span class="dom-badge">✅ USADO</span>
+                        <div>
+                            <strong>URLSearchParams</strong> — Leer parámetros entre páginas
+                        </div>
+                    </div>
+                    <div class="dom-summary-item">
+                        <span class="dom-badge">❌ NO USADO</span>
+                        <div>
+                            <strong>innerHTML</strong> — Evitado por seguridad (XSS)
+                        </div>
+                    </div>
+                    <div class="dom-summary-item">
+                        <span class="dom-badge">❌ NO USADO</span>
+                        <div>
+                            <strong>Manipulación masiva del HTML</strong> — Juego usa prompt/alert
+                        </div>
+                    </div>
+                    <div class="dom-summary-item">
+                        <span class="dom-badge">❌ NO USADO</span>
+                        <div>
+                            <strong>Frameworks / librerías</strong> — JS vanilla educativo
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="index.html" class="btn-iniciar" style="text-decoration: none; display: inline-block;">
+                    ← VOLVER AL INICIO
+                </a>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>DAWI — Desarrollo de Aplicaciones Web Inteligentes</p>
+        </footer>
+    </div>
+</body>
+</html>

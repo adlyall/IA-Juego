@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conceptos 1 - Variables, Condicionales, Funciones, Arrays</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="dom-body">
+    <div class="container dom-container">
+        <header class="header dom-header">
+            <h1 class="title">📦 CONCEPTOS 1</h1>
+            <p class="subtitle">Variables · Condicionales · Funciones · Arrays</p>
+            <div class="emojis">📦 🔀 ⚙️ 📚</div>
+        </header>
+
+        <main class="main dom-main">
+
+            <!-- ===== VARIABLES ===== -->
+            <section class="rules-card dom-section">
+                <h2>📦 1. Variables: <code>let</code> y <code>const</code></h2>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">Las variables <strong>almacenan datos</strong> que el programa usa. En JavaScript moderno usamos dos palabras reservadas:</p>
+
+                <div class="dom-explanation">
+                    <strong>💡 Diferencia clave:</strong>
+                    <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                        <li><code>let</code> → el valor <strong>puede cambiar</strong> (reasignable)</li>
+                        <li><code>const</code> → el valor <strong>NO puede cambiar</strong> (constante)</li>
+                    </ul>
+                </div>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">En <code>clase10.js</code> (líneas 1-15):</h3>
+                <pre class="code-block"><code>// ARRAY constante: las jugadas no cambian
+const jugadas = ["Piedra ✊", "Papel ✋", "Tijera ✌️"];
+
+// OBJETO con let: los puntajes SÍ cambian
+let puntajes = {
+    usuario: 0,
+    computadora: 0,
+    empates: 0
+};
+
+// Variables con let: valores que cambian
+let nombreJugador = "";
+let numeroRonda = 0;</code></pre>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">Reasignación con <code>let</code>:</h3>
+                <pre class="code-block"><code>numeroRonda = 0;      // valor inicial
+numeroRonda = 1;      // se puede cambiar
+numeroRonda++;        // incrementa en 1 (ahora vale 2)
+
+// Con const NO se puede:
+// jugadas = ["otro"];  // ERROR: no se puede reasignar</code></pre>
+            </section>
+
+            <!-- ===== CONDICIONALES ===== -->
+            <section class="rules-card dom-section">
+                <h2>🔀 2. Condicionales: <code>if</code> / <code>else</code></h2>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">Los condicionales permiten <strong>tomar decisiones</strong> según una condición. El código dentro del <code>if</code> se ejecuta solo si la condición es verdadera.</p>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">En <code>clase10.js</code> — Validación de nombre (líneas 26-39):</h3>
+                <pre class="code-block"><code>// Si el usuario cancela el prompt (null)
+if (nombre === null) {
+    alert("El nombre es obligatorio para jugar.");
+    continue;  // vuelve a pedir el nombre
+}
+
+// Si tiene menos de 3 caracteres
+if (nombre.length < 3) {
+    alert("El nombre debe tener al menos 3 caracteres.");
+    continue;  // vuelve a pedir el nombre
+}</code></pre>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">En <code>clase10.js</code> — Comparar jugadas (líneas 91-108):</h3>
+                <pre class="code-block"><code>function compararJugadas(jugadaUsuario, jugadaComputadora) {
+    // Si son iguales → empate
+    if (jugadaUsuario === jugadaComputadora) {
+        return "empate";
+    }
+
+    // Si el usuario gana (3 casos posibles)
+    if (
+        (jugadaUsuario === 1 && jugadaComputadora === 3) ||
+        (jugadaUsuario === 3 && jugadaComputadora === 2) ||
+        (jugadaUsuario === 2 && jugadaComputadora === 1)
+    ) {
+        return "usuario";
+    }
+
+    // Si no es empate ni gana el usuario → gana la computadora
+    return "computadora";
+}</code></pre>
+
+                <div class="dom-explanation">
+                    <strong>💡 Operadores usados:</strong>
+                    <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                        <li><code>===</code> → igual estricto (mismo valor Y tipo)</li>
+                        <li><code>!==</code> → distinto estricto</li>
+                        <li><code>&&</code> → AND (ambas condiciones verdaderas)</li>
+                        <li><code>||</code> → OR (al menos una verdadera)</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- ===== FUNCIONES ===== -->
+            <section class="rules-card dom-section">
+                <h2>⚙️ 3. Funciones: parámetros y <code>return</code></h2>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">Las funciones son <strong>bloques de código reutilizables</strong>. Reciben datos (parámetros) y pueden devolver un resultado (<code>return</code>).</p>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">En <code>clase10.js</code> — Función con parámetros y return (líneas 50-58):</h3>
+                <pre class="code-block"><code>// FUNCIÓN: genera número aleatorio entre 1 y 3
+function jugadaRandom() {
+    let numeroAleatorio = Math.floor(Math.random() * 3) + 1;
+    return numeroAleatorio;  // devuelve 1, 2 o 3
+}</code></pre>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">En <code>clase10.js</code> — Función con parámetros (líneas 91-108):</h3>
+                <pre class="code-block"><code>// FUNCIÓN: recibe dos parámetros y devuelve el resultado
+function compararJugadas(jugadaUsuario, jugadaComputadora) {
+    if (jugadaUsuario === jugadaComputadora) {
+        return "empate";        // devuelve string
+    }
+    if (/* condiciones de victoria */) {
+        return "usuario";       // devuelve string
+    }
+    return "computadora";       // devuelve string
+}</code></pre>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">Cómo se usan (línea 189):</h3>
+                <pre class="code-block"><code>// Llamada a la función con argumentos
+let resultado = compararJugadas(jugadaUsuario, jugadaComputadora);
+// resultado ahora vale: "usuario", "computadora" o "empate"</code></pre>
+
+                <div class="dom-explanation">
+                    <strong>💡 Parámetro vs Argumento:</strong>
+                    <ul style="margin: 0.5rem 0; padding-left: 1.5rem;">
+                        <li><strong>Parámetro</strong> → variable en la definición: <code>function foo(x)</code></li>
+                        <li><strong>Argumento</strong> → valor real al llamar: <code>foo(5)</code></li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- ===== ARRAYS ===== -->
+            <section class="rules-card dom-section">
+                <h2>📚 4. Arrays</h2>
+                <p style="margin-bottom: 1rem; line-height: 1.6;">Un array es una <strong>lista ordenada de valores</strong>. Cada posición tiene un índice que empieza en <code>0</code>.</p>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">En <code>clase10.js</code> (línea 1):</h3>
+                <pre class="code-block"><code>// ARRAY: contiene las posibles jugadas
+const jugadas = ["Piedra ✊", "Papel ✋", "Tijera ✌️"];
+
+// Índices:      0            1          2</code></pre>
+
+                <h3 style="color: #667eea; margin: 1rem 0 0.5rem;">Acceder a un elemento por índice:</h3>
+                <pre class="code-block"><code>jugadas[0]  // "Piedra ✊"
+jugadas[1]  // "Papel ✋"
+jugadas[2]  // "Tijera ✌️"
+
+// En el juego (línea 124):
+jugadas[jugadaUsuario - 1]
+// Si jugadaUsuario = 1 → jugadas[0] → "Piedra ✊"
+// Si jugadaUsuario = 2 → jugadas[1] → "Papel ✋"
+// Si jugadaUsuario = 3 → jugadas[2] → "Tijera ✌️"</code></pre>
+
+                <div class="dom-explanation">
+                    <strong>💡 ¿Por qué <code>- 1</code>?</strong>
+                    <p style="margin: 0.5rem 0;">El usuario ingresa 1, 2 o 3. Pero los índices del array empiezan en 0. Por eso se resta 1 para convertir la entrada del usuario al índice correcto del array.</p>
+                </div>
+            </section>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <a href="index.html" class="btn-iniciar" style="text-decoration: none; display: inline-block;">
+                    🎮 REGRESAR AL JUEGO
+                </a>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <p>DAWI — Desarrollo de Aplicaciones Web Inteligentes</p>
+        </footer>
+    </div>
+</body>
+</html>
